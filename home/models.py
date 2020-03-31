@@ -10,8 +10,19 @@ class Setting(models.Model):
         ('False', 'Hayır'),
     )
 
+    companyname = models.CharField(blank=True, max_length=20)
     title = models.CharField(max_length=150)
     keywords = models.CharField(max_length=255)
+    trendingkey1 = models.CharField(blank=True, max_length=25)
+    trendingkey2 = models.CharField(blank=True, max_length=25)
+    trendingkey3 = models.CharField(blank=True, max_length=25)
+
+    adaysayisi = models.CharField(blank=True, max_length=5)
+    paylasilanissayisi = models.CharField(blank=True, max_length=5)
+    yerlestirileniscisayisi = models.CharField(blank=True, max_length=5)
+    sirketsayisi = models.CharField(blank=True, max_length=5)
+
+
     description = models.CharField(max_length=255)
     company = models.CharField(max_length=50)
     address = models.CharField(blank=True, max_length=150)

@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{% block content %} {{ setting.description }} {% endblock %}" />
-    <meta name="keywords" content="{% block keywords %} {{ setting.keywords }} {% endblock %}" />
+    <meta name="keywords" content="{% block keywords1 %} {{ setting.keywords }} {% endblock %}" />
     <meta name="author" content="" />
     <link rel="shortcut icon" href="{% block icon %} {{ setting.icon.url }} {% endblock %}">
     
@@ -49,7 +49,7 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.html">{% block companyname %} {{ setting.companyname }} {% endblock %}</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -101,8 +101,8 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+              <h1 class="text-white font-weight-bold">{% block description %} {{ setting.description }} {% endblock %}</h1>
+              <p>{% block keywords %} {{ setting.keywords }} {% endblock %}</p>
             </div>
             <form method="post" class="search-jobs-form">
               <div class="row mb-5">
@@ -136,9 +136,9 @@
                 <div class="col-md-12 popular-keywords">
                   <h3>Trending Keywords:</h3>
                   <ul class="keywords list-unstyled m-0 p-0">
-                    <li><a href="#" class="">UI Designer</a></li>
-                    <li><a href="#" class="">Python</a></li>
-                    <li><a href="#" class="">Developer</a></li>
+                    <li><a href="#" class="">{% block trendingkey1 %} {{ setting.trendingkey1 }} {% endblock %}</a></li>
+                    <li><a href="#" class="">{% block trendingkey2 %} {{ setting.trendingkey2 }} {% endblock %}</a></li>
+                    <li><a href="#" class="">{% block trendingkey3 %} {{ setting.trendingkey3 }} {% endblock %}</a></li>
                   </ul>
                 </div>
               </div>
@@ -165,30 +165,30 @@
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="1930">0</strong>
+              <strong class="number" data-number="{% block adaysayisi %} {{ setting.adaysayisi }} {% endblock %}">0</strong>
             </div>
-            <span class="caption">Candidates</span>
+            <span class="caption">Aday Sayısı</span>
           </div>
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="54">0</strong>
+              <strong class="number" data-number="{% block paylasilanissayisi %} {{ setting.paylasilanissayisi }} {% endblock %}">0</strong>
             </div>
-            <span class="caption">Jobs Posted</span>
+            <span class="caption">Paylaşılan İş Sayısı</span>
           </div>
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="120">0</strong>
+              <strong class="number" data-number="{% block yerlestirileniscisayisi %} {{ setting.yerlestirileniscisayisi }} {% endblock %}">0</strong>
             </div>
-            <span class="caption">Jobs Filled</span>
+            <span class="caption">Yerleştirilen İşçi Sayısı</span>
           </div>
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="550">0</strong>
+              <strong class="number" data-number="{% block sirketsayisi %} {{ setting.sirketsayisi }} {% endblock %}">0</strong>
             </div>
-            <span class="caption">Companies</span>
+            <span class="caption">Şirket Sayısı</span>
           </div>
 
             
