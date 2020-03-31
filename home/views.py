@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from home.models import Setting
+
 
 def index(request):
-    #text = "Hello Django"
-    #bolum = "Computer Engineering"
-
-    #context = {'text': text, 'bolum': bolum}
-    return render(request, 'index.html')
+    setting = Setting.objects.get(pk=1)
+    context = {'setting': setting}
+    return render(request, 'index.html', context)
 
 # Create your views here.
 

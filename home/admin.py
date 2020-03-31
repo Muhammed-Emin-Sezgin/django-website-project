@@ -1,24 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-"""
-class ProductImageInline(admin.TabularInline):
-    model = Product_Images
-    extra = 3
+from home.models import Setting
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status']
-    list_filter = ['status']
-
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'price', 'amount', 'status']
-    list_filter = ['status', 'category']
-    inlines = [ProductImageInline]
-
-class ImagesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'product', 'image']
-
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Announcement, AnnouncementAdmin)
-admin.site.register(Images, ImagesAdmin)
-"""
+admin.site.register(Setting)
