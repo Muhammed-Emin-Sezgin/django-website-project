@@ -87,8 +87,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="294">
+              <caret line="435" column="85" lean-forward="true" selection-start-line="435" selection-start-column="85" selection-end-line="435" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -140,22 +140,25 @@
       <find>&quot;js</find>
       <find>js&quot;</find>
       <find>.jpg&quot;</find>
-      <find />
+      <find>pt-5 bg-image overlay-primary fixed overlay</find>
+      <find>py-5 bg-image overlay-primary fixed overlay</find>
+      <find>home</find>
+      <find>Blog</find>
     </findStrings>
     <replaceStrings>
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
-      <replace />
+      <replace>css' %}</replace>
+      <replace>{% static 'js/</replace>
+      <replace>&quot;{% static '</replace>
+      <replace>.css' %}&quot;</replace>
+      <replace>&quot;{% static 'fonts</replace>
+      <replace>.png' %}&quot;</replace>
+      <replace>&quot;{% static 'images</replace>
+      <replace>jpg' %}&quot;</replace>
+      <replace>&quot;{% static 'css</replace>
+      <replace>css' %}&quot;</replace>
+      <replace>&quot;{% static 'js</replace>
+      <replace>js' %}&quot;</replace>
+      <replace>.jpg' %}&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -740,8 +743,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="294">
+          <caret line="435" column="85" lean-forward="true" selection-start-line="435" selection-start-column="85" selection-end-line="435" selection-end-column="85" />
         </state>
       </provider>
     </entry>
