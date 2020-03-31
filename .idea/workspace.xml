@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aeab2990-c4e9-4668-8437-2857b703eb46" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/home/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="aeab2990-c4e9-4668-8437-2857b703eb46" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,8 +85,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="435" column="85" lean-forward="true" selection-start-line="435" selection-start-column="85" selection-end-line="435" selection-end-column="85" />
+            <state relative-caret-position="250">
+              <caret line="390" column="16" lean-forward="true" selection-start-line="390" selection-start-column="16" selection-end-line="390" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -209,7 +207,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="851" />
     <option name="y" value="-20" />
     <option name="width" value="960" />
@@ -319,7 +317,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -743,8 +741,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="435" column="85" lean-forward="true" selection-start-line="435" selection-start-column="85" selection-end-line="435" selection-end-column="85" />
+        <state relative-caret-position="250">
+          <caret line="390" column="16" lean-forward="true" selection-start-line="390" selection-start-column="16" selection-end-line="390" selection-end-column="16" />
         </state>
       </provider>
     </entry>
