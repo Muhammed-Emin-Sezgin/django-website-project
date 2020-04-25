@@ -23,6 +23,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('product/', include('product.urls')),
     path('', include('home.urls')),
+    path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ]
 
