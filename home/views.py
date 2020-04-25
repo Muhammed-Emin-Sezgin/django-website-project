@@ -13,73 +13,116 @@ def homebase(request):
 
 def index(request):
     setting = Setting.objects.get(pk=1)
+    setting.highlight_index = "nav-link active"
     context = {'setting': setting}
     return render(request, 'index.html', context)
 
 
-
 def about(request):
-    return render(request, 'about.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_about = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'about.html', context)
 
 
 def blog(request):
-    return render(request, 'blog.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_blog = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'blog.html', context)
 
 
 def blog_single(request):
-    return render(request, 'blog-single.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_blogSingle = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'blog-single.html', context)
 
 
 def contact(request):
     setting = Setting.objects.get(pk=1)
+    setting.highlight_contact = "nav-link active"
     context = {'setting': setting}
     return render(request, 'contact.html', context)
 
 
 def faq(request):
-    return render(request, 'faq.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_faq = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'faq.html', context)
 
 
 def gallery(request):
-    return render(request, 'gallery.html')
+    setting = Setting.objects.get(pk=1)
+    context = {'setting': setting}
+    return render(request, 'gallery.html', context)
 
 
 def job_listings(request):
-    return render(request, 'job-listings.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_jobListings = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'job-listings.html', context)
 
 
 def job_single(request):
-    return render(request, 'job-single.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_jobSingle = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'job-single.html', context)
 
 
 def login(request):
-    return render(request, 'login.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_login = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'login.html', context)
 
 
 def main(request):
-    return render(request, 'main.html')
+    setting = Setting.objects.get(pk=1)
+    context = {'setting': setting}
+    return render(request, 'main.html', context)
 
 
 def portfolio(request):
-    return render(request, 'portfolio.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_portfolio = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'portfolio.html', context)
 
 
 def portfolio_single(request):
-    return render(request, 'portfolio-single.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_portfolioSingle = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'portfolio-single.html', context)
 
 
 def post_job(request):
-    return render(request, 'post-job.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_postJob = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'post-job.html', context)
 
 
 def service_single(request):
-    return render(request, 'service-single.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_serviceSingle = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'service-single.html', context)
 
 
 def services(request):
-    return render(request, 'services.html')
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_services = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'services.html', context)
 
 
 def testimonials(request):
-    return render(request, 'testimonials.html')
-
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_testimonials = "nav-link active"
+    context = {'setting': setting}
+    return render(request, 'testimonials.html', context)

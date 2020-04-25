@@ -20,7 +20,7 @@
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>Şirketimiz</h3>
             <ul class="list-unstyled">
-              <li><a href="{% block aboutus %} {{ setting.aboutus }} {% endblock %}">Hakkımızda</a></li>
+              <li><a href="{{ setting.aboutus }}">Hakkımızda</a></li>
               <li><a href="#">Kariyer</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Kaynaklar</a></li>
@@ -37,10 +37,10 @@
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>İletişim</h3>
             <div class="footer-social">
-              <a href="{% block facebook %} {{ setting.facebook }} {% endblock %}"><span class="icon-facebook"></span></a>
-              <a href="{% block twitter %} {{ setting.twitter }} {% endblock %}"><span class="icon-twitter"></span></a>
-              <a href="{% block instagram %} {{ setting.instagram }} {% endblock %}"><span class="icon-instagram"></span></a>
-              <a href="{% block linkedin %} {{ setting.linkedin }} {% endblock %}"><span class="icon-linkedin"></span></a>
+              <a href="{{ setting.facebook }}"><span class="icon-facebook"></span></a>
+              <a href="{{ setting.twitter }}"><span class="icon-twitter"></span></a>
+              <a href="{{ setting.instagram }}"><span class="icon-instagram"></span></a>
+              <a href="{{ setting.linkedin }}"><span class="icon-linkedin"></span></a>
             </div>
           </div>
         </div>
