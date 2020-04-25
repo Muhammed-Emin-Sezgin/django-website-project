@@ -48,8 +48,9 @@
   </div>
 
   {%  include 'header.html' %}
-  {%  block body %} {% endblock %}
-  {%  include 'footer.html' %}
+  {% block body %} {% endblock %}
+  {% block stats %} {% endblock %}
+  {% include 'footer.html' %}
 
   </body>
 </html>

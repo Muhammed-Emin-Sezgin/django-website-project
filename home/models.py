@@ -22,6 +22,11 @@ class Setting(models.Model):
     yerlestirileniscisayisi = models.CharField(blank=True, max_length=5)
     sirketsayisi = models.CharField(blank=True, max_length=5)
 
+    calisanSayisi = models.CharField(blank=True, max_length=5)
+    ofisSayisi = models.CharField(blank=True, max_length=5)
+    ozgecmisSayisi = models.CharField(blank=True, max_length=20)
+    uyeSirketSayisi = models.CharField(blank=True, max_length=10)
+
     description = models.CharField(max_length=255)
     company = models.CharField(max_length=50)
     address = models.CharField(blank=True, max_length=150)
