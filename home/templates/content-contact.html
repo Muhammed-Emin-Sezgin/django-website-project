@@ -14,20 +14,28 @@
       </div>
     </section>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <section class="site-section" id="next-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <form action="#" class="">
 
+            <form action="" method="post" class="">
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="fname">İsim</label>
-                  <input type="text" id="fname" class="form-control">
+                    {{ form.fname }}
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lname">Soyisim</label>
-                  <input type="text" id="lname" class="form-control">
+                    {{ form.lname }}
                 </div>
               </div>
 
@@ -35,7 +43,7 @@
 
                 <div class="col-md-12">
                   <label class="text-black" for="email">Email</label>
-                  <input type="email" id="email" class="form-control">
+                  {{ form.email }}
                 </div>
               </div>
 
@@ -43,19 +51,20 @@
 
                 <div class="col-md-12">
                   <label class="text-black" for="subject">Konu</label>
-                  <input type="subject" id="subject" class="form-control">
+                  {{ form.subject }}
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="message">Mesaj</label>
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Sorularınızı veya isteklerinizi yazınız..."></textarea>
+                  {{ form.message }}
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
+                    {% csrf_token %}
                   <input type="submit" value="Gönder" class="btn btn-primary btn-md text-white">
                 </div>
               </div>
@@ -79,6 +88,10 @@
         </div>
       </div>
     </section>
+
+    <form action="" method="post">
+
+    </form>
 
 <!--
     <section class="site-section bg-light">

@@ -1,5 +1,6 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from django.forms import ModelForm, TextInput, Textarea
 
 # Create your models here.
 
@@ -68,3 +69,39 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactFormMessage(models.Model):
+
+    STATUS = (
+        ('New', 'New'),
+        ('Read', 'Read'),
+    )
+
+    fname = models.CharField(blank=True, max_length=20)
+    lname = models.CharField(blank=True, max_length=20)
+    email = models.CharField(blank=True, max_length=40)
+    subject = models.CharField(blank=True, max_length=50)
+    message = models.CharField(blank=True, max_length=255)
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    ip = models.CharField(blank=True, max_length=20)
+    note = models.CharField(blank=True, max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.fname
+
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = ContactFormMessage
+        fields = ['fname', 'lname', 'email', 'subject', 'message']
+        widgets = {
+        'fname': TextInput(attrs={'class': 'form-control', 'id': 'fname'}),
+        'lname': TextInput(attrs={'class': 'form-control', 'id': 'lname'}),
+        'email': TextInput(attrs={'class': 'form-control', 'id': 'email'}),
+        'subject': TextInput(attrs={'class': 'form-control', 'id': 'subject'}),
+        'message': Textarea(attrs={'class': 'form-control', 'id': 'message', 'name': 'message', 'cols': '30', 'rows': '7'})
+        }
+

@@ -1,7 +1,10 @@
+from django.contrib import messages
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
-from home.models import Setting
+from home.models import Setting, ContactForm, ContactFormMessage
+
+
 # Create your views here.
 
 
@@ -40,9 +43,24 @@ def blog_single(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            data = ContactFormMessage()
+            data.fname = form.cleaned_data['fname']
+            data.lname = form.cleaned_data['lname']
+            data.email = form.cleaned_data['email']
+            data.subject = form.cleaned_data['subject']
+            data.message = form.cleaned_data['message']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+            messages.success(request, "Mesajınız başarı ile gönderilmiştir. Teşekkür Ederiz...")
+            return HttpResponseRedirect('/contact.html')
+
     setting = Setting.objects.get(pk=1)
     setting.highlight_contact = "nav-link active"
-    context = {'setting': setting}
+    form = ContactForm()
+    context = {'setting': setting, 'form': form}
     return render(request, 'contact.html', context)
 
 
