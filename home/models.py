@@ -1,3 +1,4 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 # Create your models here.
@@ -29,7 +30,7 @@ class Setting(models.Model):
 
     description = models.CharField(max_length=255)
     company = models.CharField(max_length=50)
-    address = models.CharField(blank=True, max_length=150)
+    address = RichTextUploadingField()
     phone = models.CharField(blank=True, max_length=15)
     fax = models.CharField(blank=True, max_length=15)
     email = models.CharField(blank=True, max_length=50)
