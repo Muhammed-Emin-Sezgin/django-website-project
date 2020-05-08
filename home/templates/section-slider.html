@@ -1,0 +1,26 @@
+{% load static %}
+<section class="bg-light pt-5 testimony-full">
+
+        <div class="owl-carousel single-carousel">
+
+            {% for rs in sliderdata %}
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-lg-left">
+                <blockquote>
+                  <p>{{ rs.title }}</p>
+                  <p><cite> &mdash; {{ rs.category }}</cite></p>
+                </blockquote>
+              </div>
+              <div class="col-lg-6 align-self-end text-center text-lg-right">
+                <img src="{{ rs.image.url }}" alt="Image" class="img-fluid mb-0">
+              </div>
+            </div>
+          </div>
+
+            {% endfor %}
+
+      </div>
+
+</section>

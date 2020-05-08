@@ -6,6 +6,7 @@ from home.models import Setting, ContactForm, ContactFormMessage
 
 
 # Create your views here.
+from product.models import Product
 
 
 def homebase(request):
@@ -17,7 +18,11 @@ def homebase(request):
 def index(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_index = "nav-link active"
-    context = {'setting': setting}
+    sliderdata = Product.objects.all()[:2]
+
+    context = {'setting': setting,
+               'page': 'home',
+               'sliderdata': sliderdata}
     return render(request, 'index.html', context)
 
 
