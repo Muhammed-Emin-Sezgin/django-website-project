@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+import isIlan
 from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
 
@@ -19,7 +20,8 @@ def homebase(request):
 def index(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_index = "nav-link active"
-    sliderdata = Product.objects.all()[:2]
+    #sliderdata = Product.objects.all()[:2]
+    sliderdata = Ilan.objects.all()[:4]
 
     context = {'setting': setting,
                'page': 'home',

@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeab2990-c4e9-4668-8437-2857b703eb46" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/home/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/section-search-small.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/section-search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/content-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/content-index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/content-job-listings.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/content-job-listings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/homebase.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/homebase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/job-listings.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/job-listings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/section-slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/section-slider.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isBul/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/isBul/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,14 +55,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/home/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="188" column="34" selection-start-line="188" selection-start-column="34" selection-end-line="188" selection-end-column="34" />
+            <state relative-caret-position="485">
+              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
                 <element signature="e#1#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="section-slider.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/section-slider.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -107,11 +109,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="content-job-listings.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="content-job-listings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home/templates/content-job-listings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="67" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+            <state relative-caret-position="550">
+              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="875">
+              <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -198,13 +209,11 @@
         <option value="$PROJECT_DIR$/home/templates/content-about.html" />
         <option value="$PROJECT_DIR$/home/templates/footer.html" />
         <option value="$PROJECT_DIR$/home/templates/content-login.html" />
-        <option value="$PROJECT_DIR$/home/templates/header.html" />
         <option value="$PROJECT_DIR$/home/templates/content-slider.html" />
         <option value="$PROJECT_DIR$/home/templates/section-companies-helped.html" />
         <option value="$PROJECT_DIR$/home/templates/section-jobs.html" />
         <option value="$PROJECT_DIR$/home/templates/section-looking-for-a-job.html" />
         <option value="$PROJECT_DIR$/home/templates/section-site-stats.html" />
-        <option value="$PROJECT_DIR$/home/templates/section-slider.html" />
         <option value="$PROJECT_DIR$/product/models.py" />
         <option value="$PROJECT_DIR$/isIlan/urls.py" />
         <option value="$PROJECT_DIR$/isBul/settings.py" />
@@ -222,8 +231,10 @@
         <option value="$PROJECT_DIR$/home/templates/section-search.html" />
         <option value="$PROJECT_DIR$/home/templates/section-search-small.html" />
         <option value="$PROJECT_DIR$/home/templates/content-index.html" />
-        <option value="$PROJECT_DIR$/home/views.py" />
         <option value="$PROJECT_DIR$/home/templates/content-job-listings.html" />
+        <option value="$PROJECT_DIR$/home/templates/header.html" />
+        <option value="$PROJECT_DIR$/home/templates/section-slider.html" />
+        <option value="$PROJECT_DIR$/home/views.py" />
       </list>
     </option>
   </component>
@@ -600,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/section-slider.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/isIlan/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="875">
@@ -620,13 +624,6 @@
     <entry file="file://$PROJECT_DIR$/home/templates/content-job-single.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4629" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/home/templates/section-looking-for-a-job.html">
@@ -724,12 +721,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/views.py">
+    <entry file="file://$PROJECT_DIR$/home/templates/section-search-small.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="188" column="34" selection-start-line="188" selection-start-column="34" selection-end-line="188" selection-end-column="34" />
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
           <folding>
-            <element signature="e#1#36#0" expanded="true" />
+            <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -741,20 +738,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/section-search-small.html">
+    <entry file="file://$PROJECT_DIR$/home/templates/content-job-listings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="550">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/content-job-listings.html">
+    <entry file="file://$PROJECT_DIR$/home/templates/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="67" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+        <state relative-caret-position="875">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/section-slider.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="e#1#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
