@@ -1,8 +1,9 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField
 
 # Create your models here.
+from isIlan.models import Ilan
 
 
 class Setting(models.Model):
@@ -103,5 +104,37 @@ class ContactForm(ModelForm):
         'email': TextInput(attrs={'class': 'form-control', 'id': 'email'}),
         'subject': TextInput(attrs={'class': 'form-control', 'id': 'subject'}),
         'message': Textarea(attrs={'class': 'form-control', 'id': 'message', 'name': 'message', 'cols': '30', 'rows': '7'})
+        }
+
+
+class IlanForm(ModelForm):
+    class Meta:
+        model = Ilan
+        fields = ['sirketPoster', 'email', 'ilanBaslik', 'konum', 'isTuru', 'calismaZamani', 'isTanimi',
+                  'sirketIsmi', 'etiketAlani', 'sirketTanimi', 'sirketWebsite', 'sirketFacebook', 'sirketTwitter',
+                  'sirketLinkedin', 'sirketLogo']
+        widgets = {
+            #'sirketPoster': ImageField(),
+            'email':        TextInput(attrs={'class': 'form-control', 'id': 'email',
+                                              'placeholder': 'sirket@domain.com'}),
+            'ilanBaslik':   TextInput(attrs={'class': 'form-control', 'id': 'job-title',
+                                              'placeholder': 'Örn. Android Developer'}),
+            'konum':        TextInput(attrs={'class': 'form-control', 'id': 'job-location',
+                                              'placeholder': 'Örn. İstanbul'}),
+            #'isTuru':       MultipleChoiceField(),
+            #'calismaZamani':MultipleChoiceField(),
+            'isTanimi':     RichTextUploadingField(),
+            'sirketIsmi':   TextInput(attrs={'class': 'form-control', 'id': 'company-name'}),
+            'etiketAlani':  TextInput(attrs={'class': 'form-control', 'id': 'company-tagline'}),
+            'sirketTanimi': RichTextUploadingField(),
+            'sirketWebsite':TextInput(attrs={'class': 'form-control', 'id': 'company-website',
+                                              'placeholder': 'https://'}),
+            'sirketFacebook':TextInput(attrs={'class': 'form-control', 'id': 'company-website-fb',
+                                              'placeholder': 'Şirket Facebook Linki'}),
+            'sirketTwitter':TextInput(attrs={'class': 'form-control', 'id': 'company-website-tw',
+                                              'placeholder': 'Şirket Twitter Linki'}),
+            'sirketLinkedin':TextInput(attrs={'class': 'form-control', 'id': 'company-website-tw',
+                                              'placeholder': 'Şirket Linkedin Linki'})
+            #'sirketLogo':   ImageField()
         }
 

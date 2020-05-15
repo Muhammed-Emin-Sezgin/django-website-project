@@ -1,7 +1,14 @@
 from django.contrib import admin
 
 # Register your models here.
+from isIlan.models import Ilan
 from product.models import Category, Product, Images
+
+
+class isIlanAdmin(admin.ModelAdmin):
+    list_display = ['sirketIsmi', 'calismaZamani']
+    list_filter = ['sirketIsmi', 'calismaZamani']
+    #inlines = [ProductImageInline]
 
 
 class ProductImageInline(admin.TabularInline):
@@ -29,3 +36,4 @@ class ImagesAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Ilan, isIlanAdmin)

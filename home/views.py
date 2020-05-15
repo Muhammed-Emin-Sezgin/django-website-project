@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from home.models import Setting, ContactForm, ContactFormMessage
-
+from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
 
 # Create your views here.
+from isIlan.models import Ilan
 from product.models import Product
 
 
@@ -124,9 +124,33 @@ def portfolio_single(request):
 
 
 def post_job(request):
+    if request.method == 'POST':
+        ilan = IlanForm(request.POST, request.FILES)
+        if ilan.is_valid():
+            data = Ilan()
+            data.sirketPoster = ilan.cleaned_data['sirketPoster']
+            data.email = ilan.cleaned_data['email']
+            data.ilanBaslik = ilan.cleaned_data['ilanBaslik']
+            data.konum = ilan.cleaned_data['konum']
+            data.isTuru = ilan.cleaned_data['isTuru']
+            data.calismaZamani = ilan.cleaned_data['calismaZamani']
+            data.isTanimi = ilan.cleaned_data['isTanimi']
+            data.sirketIsmi = ilan.cleaned_data['sirketIsmi']
+            data.etiketAlani = ilan.cleaned_data['etiketAlani']
+            data.sirketTanimi = ilan.cleaned_data['sirketTanimi']
+            data.sirketWebsite = ilan.cleaned_data['sirketWebsite']
+            data.sirketFacebook = ilan.cleaned_data['sirketFacebook']
+            data.sirketTwitter = ilan.cleaned_data['sirketTwitter']
+            data.sirketLinkedin = ilan.cleaned_data['sirketLinkedin']
+            data.sirketLogo = ilan.cleaned_data['sirketLogo']
+            data.save()
+            messages.success(request, "İlanınız Başarı İle Kaydedilmiştir...")
+            return HttpResponseRedirect('/post-job.html')
+
     setting = Setting.objects.get(pk=1)
     setting.highlight_postJob = "nav-link active"
-    context = {'setting': setting}
+    ilan = IlanForm()
+    context = {'setting': setting, 'ilan': ilan}
     return render(request, 'post-job.html', context)
 
 
