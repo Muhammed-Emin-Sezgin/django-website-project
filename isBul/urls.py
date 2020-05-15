@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from home import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('', include('home.urls')),
     path(r'ckeditor/', include('ckeditor_uploader.urls')),
+    path('search/', views.ilan_search, name='ilan_search')
 
 ]
 

@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
 
 # Create your views here.
@@ -173,3 +174,25 @@ def testimonials(request):
     setting.highlight_testimonials = "nav-link active"
     context = {'setting': setting}
     return render(request, 'testimonials.html', context)
+
+
+def ilan_search(request):
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_serviceSingle = "nav-link active"
+    if request.method == 'POST':
+        search = SearchForm(request.POST)
+        if search.is_valid():
+            query = search.cleaned_data['query']
+            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query)
+            if not ilanlar:
+                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query)
+            sayi = ilanlar.count()
+            context = {
+                'setting': setting,
+                'ilanlar': ilanlar,
+                'sayi': sayi
+            }
+            return render(request, 'job-listings.html', context)
+
+    return HttpResponseRedirect('/')
+
