@@ -7,13 +7,13 @@ from django.db import models
 class Ilan(models.Model):
 
     calismaZamaniSecenek = (
-        ('Part Time', 'Yarı Zamanlı'),
-        ('Full Time', 'Tam Zamanlı'),
+        ('Zaman', 'Yarı Zamanlı'),
+        ('Zaman', 'Tam Zamanlı'),
     )
 
     isTuruSecenek = (
-        ('Part Time', 'Yarı Zamanlı'),
-        ('Full Time', 'Tam Zamanlı'),
+        ('Zaman', 'Yarı Zamanlı'),
+        ('Zaman', 'Tam Zamanlı'),
     )
 
     sirketPoster = models.ImageField(blank=True, upload_to='images/')

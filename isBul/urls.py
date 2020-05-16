@@ -26,8 +26,8 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('', include('home.urls')),
     path(r'ckeditor/', include('ckeditor_uploader.urls')),
-    path('search/', views.ilan_search, name='ilan_search')
-
+    path('search/', views.ilan_search, name='ilan_search'),
+    path(r'search_auto/', views.ilan_search_auto, name='ilan_search_auto'),
 ]
 
 if settings.DEBUG:

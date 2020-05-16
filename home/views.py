@@ -1,14 +1,14 @@
+import json
+
 from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-import isIlan
 from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
 
 # Create your views here.
 from isIlan.models import Ilan
-from product.models import Product
 
 
 def homebase(request):
@@ -20,9 +20,7 @@ def homebase(request):
 def index(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_index = "nav-link active"
-    #sliderdata = Product.objects.all()[:2]
     sliderdata = Ilan.objects.all()[:4]
-
     context = {'setting': setting,
                'page': 'home',
                'sliderdata': sliderdata}
@@ -185,16 +183,34 @@ def ilan_search(request):
         search = SearchForm(request.POST)
         if search.is_valid():
             query = search.cleaned_data['query']
-            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query)
+            calismaSekli = search.cleaned_data['calismaSekli']
+            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, calismaZamani__icontains=calismaSekli)
             if not ilanlar:
-                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query)
+                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, calismaZamani__icontains=calismaSekli)
             sayi = ilanlar.count()
             context = {
                 'setting': setting,
                 'ilanlar': ilanlar,
-                'sayi': sayi
+                'sayi': sayi,
             }
             return render(request, 'job-listings.html', context)
-
     return HttpResponseRedirect('/')
 
+
+def ilan_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        ilan = Ilan.objects.filter(sirketIsmi__icontains=q)
+        if not ilan:
+            ilan = Ilan.objects.filter(ilanBaslik__icontains=q)
+        results = []
+        for rs in ilan:
+            ilan_json = {}
+            ilan_json = rs.sirketIsmi
+            results.append(ilan_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+
+    return HttpResponse(data, mimetype)

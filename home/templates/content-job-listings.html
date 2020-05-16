@@ -32,13 +32,13 @@
                         </div>
                         <div class="job-listing-meta">
                             <span class="badge
-                            {% if rs.calismaZamani == "Full Time"%}
+                            {% if rs.get_calismaZamani_display == "Tam Zamanlı"%}
                                 badge-success
                             {% endif %}
-                            {% if rs.calismaZamani == "Part Time" %}
+                            {% if rs.get_calismaZamani_display == "Yarı Zamanlı" %}
                                 badge-danger
                             {% endif %}
-                        ">{{ rs.calismaZamani }}</span>
+                        ">{{ rs.get_calismaZamani_display }}</span>
                         </div>
                     </div>
 

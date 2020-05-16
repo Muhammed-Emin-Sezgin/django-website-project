@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField
 
 # Create your models here.
+
 from isIlan.models import Ilan
 
 
@@ -137,4 +138,3 @@ class IlanForm(ModelForm):
                                               'placeholder': 'Şirket Linkedin Linki'})
             #'sirketLogo':   ImageField()
         }
-

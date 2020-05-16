@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mptt',
     'isIlan.apps.IsilanConfig',
     'product.apps.ProductConfig',
     'home.apps.HomeConfig',
