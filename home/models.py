@@ -1,8 +1,10 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField
 
 # Create your models here.
+from django.utils.safestring import mark_safe
 
 from isIlan.models import Ilan
 
@@ -138,3 +140,50 @@ class IlanForm(ModelForm):
                                               'placeholder': 'Şirket Linkedin Linki'})
             #'sirketLogo':   ImageField()
         }
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(blank=True, max_length=20)
+    address = models.CharField(blank=True, max_length=100)
+    city = models.CharField(blank=True, max_length=20)
+    country = models.CharField(blank=True, max_length=20)
+    image = models.ImageField(blank=True, upload_to='images/users/')
+
+    def __str__(self):
+        return self.user.username
+
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    image_tag.short_description = 'Image'
+
+    def username(self):
+        return self.user.username
+
+    def email(self):
+        return self.user.email
+
+    def first_name(self):
+        return self.user.first_name
+
+    def last_name(self):
+        return self.user.last_name
+
+    def last_login(self):
+        return self.user.last_login
+
+
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile()
+        fields = ['phone', 'address', 'city', 'country', 'image']
+
+
+
+
+
+
+
+
+
+

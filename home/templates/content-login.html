@@ -6,7 +6,7 @@
           <div class="col-md-7">
             <h1 class="text-white font-weight-bold">Kayıt Ol/Giriş Yap</h1>
             <div class="custom-breadcrumbs">
-              <a href="/">Home</a> <span class="mx-2 slash">/</span>
+              <a href="/">Ana Sayfa</a> <span class="mx-2 slash">/</span>
               <span class="text-white"><strong>Giriş Yap</strong></span>
             </div>
           </div>
@@ -14,29 +14,67 @@
       </div>
     </section>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <section class="site-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 mb-5">
             <h2 class="mb-4">İşBul'a Kayıt Ol</h2>
-            <form action="#" class="p-4 border rounded">
+            <form action="/signup/" class="p-4 border rounded" method="post">
+                {% csrf_token %}
+
+              {% for field in signup %}
+
+                  {% if field.help_text %}
+                      {{ field.help_text }}
+                  {% endif %}
+
+                  {% if field.errors %}
+                      <p style="color: red">{{ field.errors }}</p>
+                  {% endif %}
+              {% endfor %}
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="fname" class="form-control" placeholder="Email adresiniz">
+                  <label class="text-black" for="fname">Kullanıcı Adı *</label>
+                  <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adınız" required>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Şifre</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Şifreniz">
+                  <label class="text-black" for="fname">Email *</label>
+                  <input type="email" name="email" class="form-control" placeholder="Email Adresiniz" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">İsim *</label>
+                  <input type="text" name="first_name" class="form-control" placeholder="İsminiz" style="text-transform: capitalize;" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Soyisim *</label>
+                  <input type="text" name="last_name" class="form-control" placeholder="Soyisminiz" style="text-transform: capitalize;" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">Şifre *</label>
+                  <input type="password" name="password1" class="form-control" placeholder="Şifreniz" required>
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Şifre Tekrar</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Şifrenizi yeniden yazınız">
+                  <label class="text-black" for="fname">Şifre Tekrar *</label>
+                  <input type="password" name="password2" class="form-control" placeholder="Şifrenizi Yeniden Yazınız" required>
                 </div>
               </div>
 
@@ -50,18 +88,18 @@
           </div>
           <div class="col-lg-6">
             <h2 class="mb-4">İşBul'a Giriş Yap</h2>
-            <form action="#" class="p-4 border rounded">
-
+            <form action="/login/" class="p-4 border rounded" method="post">
+                {% csrf_token %}
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="fname" class="form-control" placeholder="Email adresiniz">
+                  <label class="text-black" for="fname">Kullanıcı Adı:</label>
+                  <input name="username" type="text" class="form-control" placeholder="Kullanıcı Adınız">
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Şifre</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Şifreniz">
+                  <label class="text-black" for="fname">Şifre:</label>
+                  <input name="password" type="password" class="form-control" placeholder="Şifreniz">
                 </div>
               </div>
 

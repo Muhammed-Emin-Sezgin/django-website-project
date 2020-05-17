@@ -1,10 +1,11 @@
 import json
 
 from django.contrib import messages
+from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from home.forms import SearchForm
+from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
 
 # Create your views here.
@@ -15,6 +16,12 @@ def homebase(request):
     setting = Setting.objects.get(pk=1)
     context = {'setting': setting}
     return render(request, 'homebase.html', context)
+
+
+def header(request):
+    setting = Setting.objects.get(pk=1)
+    context = {'setting': setting}
+    return render(request, 'header.html', context)
 
 
 def index(request):
@@ -95,13 +102,6 @@ def job_single(request):
     setting.highlight_jobSingle = "nav-link active"
     context = {'setting': setting}
     return render(request, 'job-single.html', context)
-
-
-def login(request):
-    setting = Setting.objects.get(pk=1)
-    setting.highlight_login = "nav-link active"
-    context = {'setting': setting}
-    return render(request, 'login.html', context)
 
 
 def main(request):
@@ -214,3 +214,49 @@ def ilan_search_auto(request):
     mimetype = 'application/json'
 
     return HttpResponse(data, mimetype)
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect('/')
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return HttpResponseRedirect('/')
+        else:
+            # Return an 'invalid login' error message.
+            messages.warning(request, "Kullanıcı Adı veya Şifre Hatalı!")
+            return HttpResponseRedirect('/login')
+
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_login = "nav-link active"
+    context = {'setting': setting,
+               'signup': SignUpForm()}
+    return render(request, 'login.html', context)
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        signup = SignUpForm(request.POST)
+        if signup.is_valid():
+            signup.save()
+            username = request.POST['username']
+            password = request.POST['password1']
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/')
+
+    signup = SignUpForm()
+    setting = Setting.objects.get(pk=1)
+    setting.highlight_login = "nav-link active"
+    context = {'setting': setting,
+               'signup': signup}
+    return render(request, 'login.html', context)

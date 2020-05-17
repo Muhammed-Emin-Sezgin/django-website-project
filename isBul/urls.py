@@ -28,6 +28,9 @@ urlpatterns = [
     path(r'ckeditor/', include('ckeditor_uploader.urls')),
     path('search/', views.ilan_search, name='ilan_search'),
     path(r'search_auto/', views.ilan_search_auto, name='ilan_search_auto'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('login/', views.login_view, name='login_view'),
+    path('signup/', views.signup_view, name='signup_view'),
 ]
 
 if settings.DEBUG:
