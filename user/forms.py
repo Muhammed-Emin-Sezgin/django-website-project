@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.forms import TextInput, EmailInput, FileInput, Select
 
 from home.models import UserProfile
+from isIlan.models import Ilan
 
 
 class SignUpFormForm(UserCreationForm):
@@ -29,13 +30,6 @@ class UserUpdateForm(UserChangeForm):
         }
 
 
-CITY = [
-    ('Istanbul', 'Istanbul'),
-    ('Ankara', 'Ankara'),
-    ('Izmir', 'Izmir'),
-]
-
-
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -43,8 +37,8 @@ class ProfileUpdateForm(forms.ModelForm):
         widgets = {
             'phone'     : TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefon Numarası'}),
             'address'   : TextInput(attrs={'class': 'form-control', 'placeholder': 'Adres'}),
-            'city'      : Select(attrs={'class': 'selectpicker', 'data-style': 'btn-white btn-lg', 'data-width': '100%',
-                                        'data-live-search': 'True', 'placeholder': 'Şehir'}, choices=CITY),
+            'city'      : Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-white btn-lg', 'data-width': '100%',
+                                        'data-live-search': 'True', 'placeholder': 'Şehir'}, choices=Ilan.konumSecenek),
             'country'   : TextInput(attrs={'class': 'form-control', 'placeholder': 'Ülke'}),
             'image'     : FileInput(attrs={'class': 'form-control', 'placeholder': 'Profil Resmi'})
         }

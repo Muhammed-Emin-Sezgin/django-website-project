@@ -1,7 +1,7 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
-from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField
+from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField, FileInput, Select
 
 # Create your models here.
 from django.utils.safestring import mark_safe
@@ -117,15 +117,20 @@ class IlanForm(ModelForm):
                   'sirketIsmi', 'etiketAlani', 'sirketTanimi', 'sirketWebsite', 'sirketFacebook', 'sirketTwitter',
                   'sirketLinkedin', 'sirketLogo']
         widgets = {
-            #'sirketPoster': ImageField(),
+            'sirketPoster': FileInput(attrs={'class': 'form-control', 'placeholder': 'Poster'}),
             'email':        TextInput(attrs={'class': 'form-control', 'id': 'email',
                                               'placeholder': 'sirket@domain.com'}),
             'ilanBaslik':   TextInput(attrs={'class': 'form-control', 'id': 'job-title',
                                               'placeholder': 'Örn. Android Developer'}),
-            'konum':        TextInput(attrs={'class': 'form-control', 'id': 'job-location',
-                                              'placeholder': 'Örn. İstanbul'}),
-            #'isTuru':       MultipleChoiceField(),
-            #'calismaZamani':MultipleChoiceField(),
+            'konum':        Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-black',
+                                          'data-width': '100%', 'data-live-search': 'True',
+                                          'placeholder': 'Çalışma Zamanı'}, choices=model.konumSecenek),
+            'isTuru':       Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-black',
+                                          'data-width': '100%', 'data-live-search': 'True', 'placeholder': 'İş Türü'},
+                                   choices=model.isTuruSecenek),
+            'calismaZamani':Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-black',
+                                          'data-width': '100%', 'data-live-search': 'True',
+                                          'placeholder': 'Çalışma Zamanı'}, choices=model.calismaZamaniSecenek),
             'isTanimi':     RichTextUploadingField(),
             'sirketIsmi':   TextInput(attrs={'class': 'form-control', 'id': 'company-name'}),
             'etiketAlani':  TextInput(attrs={'class': 'form-control', 'id': 'company-tagline'}),
@@ -137,8 +142,8 @@ class IlanForm(ModelForm):
             'sirketTwitter':TextInput(attrs={'class': 'form-control', 'id': 'company-website-tw',
                                               'placeholder': 'Şirket Twitter Linki'}),
             'sirketLinkedin':TextInput(attrs={'class': 'form-control', 'id': 'company-website-tw',
-                                              'placeholder': 'Şirket Linkedin Linki'})
-            #'sirketLogo':   ImageField()
+                                              'placeholder': 'Şirket Linkedin Linki'}),
+            'sirketLogo':   FileInput(attrs={'class': 'form-control', 'placeholder': 'Logo'})
         }
 
 

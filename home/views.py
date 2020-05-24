@@ -27,7 +27,7 @@ def header(request):
 def index(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_index = "nav-link active"
-    sliderdata = Ilan.objects.all()[:4]
+    sliderdata = Ilan.objects.all()[:5]
     context = {'setting': setting,
                'page': 'home',
                'sliderdata': sliderdata}
