@@ -1,6 +1,8 @@
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordChangeForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -34,5 +36,22 @@ def user_update(request):
         return render(request, 'user-update.html', context)
 
 
+@login_required(login_url='/login')
 def user_password(request):
-    return HttpResponse("Password")
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "Şifreniz Başarıyla Güncellendi")
+            return HttpResponseRedirect('/user')
+        else:
+            messages.error(request, "Hata: ")
+            return HttpResponseRedirect('/user/password')
+
+    else:
+        form = PasswordChangeForm(request.user)
+        context = {
+            'form': form
+        }
+        return render(request, 'user-password.html', context)
