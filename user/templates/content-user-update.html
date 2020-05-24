@@ -4,22 +4,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Kullanıcı Profili</h1>
+            <h1 class="text-white font-weight-bold">Kullanıcı Profili Güncelle</h1>
             <div class="custom-breadcrumbs">
               <a href="/">Anasayfa</a> <span class="mx-2 slash">/</span>
-              <span class="text-white"><strong>Kullanıcı Profili</strong></span>
+              <a href="/user">Kullanıcı Profili</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Güncelle</strong></span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" role="alert" align="center">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+
     <section class="site-section pb-0 portfolio-single" id="next-section">
 
       <div class="container">
@@ -36,60 +31,57 @@
 
 
             <div class="mb-4">
-              <h3 class="mb-4 h4 border-bottom">{{ user.first_name }} {{ user.last_name }}</h3>
+              <h3 class="mb-4 h4 border-bottom">Profil Güncelle</h3>
 
               <p class="mb-0"></p>
             </div>
-
+        <form action="" method="post" enctype="multipart/form-data" class="">
             <div class="row mb-4">
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">İsim</strong>
+                {{ user_form.first_name }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Soyisim</strong>
+                {{ user_form.last_name }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">Kullanıcı Adı</strong>
-                {{ user.username }}
+                {{ user_form.username }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">E-mail</strong>
-                {{ user.email }}
+                {{ user_form.email }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">Telefon</strong>
-                {{ user.userprofile.phone }}
+                {{ profile_form.phone }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">Adres</strong>
-                {{ user.userprofile.address }}
+                {{ profile_form.address }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">Şehir</strong>
-                {{ user.userprofile.city }}
+                {{ profile_form.city }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">Ülke</strong>
-                {{ user.userprofile.country }}
+                {{ profile_form.country }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
-                <strong class="d-block text-black">CV</strong>
-                CV
-              </div>
-              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
-                <a href="#" class="btn btb-md btn-primary border-width-2">CV Yükle</a>
+                <strong class="d-block text-black">Profil Resmi</strong>
+                {{ profile_form.image }}
               </div>
             </div>
-
+            <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                {% csrf_token %}
+                <input type="submit" value="Güncelle" class="btn btn-primary btn-md text-white">
+            </div>
+        </form>
           </div>
         </div>
 
-      </div>
-    </section>
-        <section class=" py-3 site-section mb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <a href="/user/update" class="btn btn-md btn-outline-primary border-width-2 d-block">Profili Güncelle</a>
-          </div>
-          <div class="col-md-4 text-center">
-            <a href="/user/password" class="btn btn-md btn-outline-primary border-width-2 d-block">Şifre Değiştir</a>
-          </div>
-        </div>
       </div>
     </section>
   </div>
