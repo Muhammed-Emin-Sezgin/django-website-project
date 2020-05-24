@@ -1,0 +1,93 @@
+    <!-- HOME -->
+    {% load static %}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Kullanıcı Profili</h1>
+            <div class="custom-breadcrumbs">
+              <a href="index.html">Anasayfa</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Kullanıcı Profili</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section pb-0 portfolio-single" id="next-section">
+
+      <div class="container">
+
+        <div class="row mb-5 mt-5">
+
+          <div class="col-lg-8">
+            <figure>
+              <a href="{{ user.userprofile.image.url }}" data-fancybox="gallery"><img src="{{ user.userprofile.image.url }}" alt="Profile Picture" class="img-fluid"></a>
+            </figure>
+          </div>
+
+          <div class="col-lg-4 ml-auto h-100 jm-sticky-top">
+
+
+            <div class="mb-4">
+              <h3 class="mb-4 h4 border-bottom">{{ user.first_name }} {{ user.last_name }}</h3>
+
+              <p class="mb-0"></p>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Kullanıcı Adı</strong>
+                {{ user.username }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">E-mail</strong>
+                {{ user.email }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Telefon</strong>
+                {{ user.userprofile.phone }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Adres</strong>
+                {{ user.userprofile.address }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Şehir</strong>
+                {{ user.userprofile.city }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Ülke</strong>
+                {{ user.userprofile.country }}
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">CV</strong>
+                CV
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <a href="#" class="btn btb-md btn-primary border-width-2">CV Yükle</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+        <section class=" py-3 site-section mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <a href="#" class="btn btn-md btn-outline-primary border-width-2 d-block">Profili Güncelle</a>
+          </div>
+          <div class="col-md-4 text-center">
+            <a href="#" class="btn btn-md btn-outline-primary border-width-2 d-block">Şifre Değiştir</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  </body>
+</html>
