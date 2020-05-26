@@ -1,7 +1,8 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
-from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField, FileInput, Select
+from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleChoiceField, FileInput, Select, \
+    DateTimeInput
 
 # Create your models here.
 from django.utils.safestring import mark_safe
@@ -48,7 +49,14 @@ class Setting(models.Model):
     instagram = models.CharField(blank=True, max_length=50)
     twitter = models.CharField(blank=True, max_length=50)
     linkedin = models.CharField(blank=True, max_length=50)
-    aboutus = models.TextField()
+    aboutusTitle = models.TextField(blank=True)
+    aboutus = models.TextField(blank=True)
+    aboutus2Title = models.TextField(blank=True)
+    aboutus2 = models.TextField(blank=True)
+    aboutusLink = models.TextField(blank=True)
+    aboutusLink2 =models.TextField(blank=True)
+    aboutusPicture = models.ImageField(blank=True, upload_to='images/aboutus')
+    aboutusPicture2 = models.ImageField(blank=True, upload_to='images/aboutus')
     contact = models.TextField(blank=True)
     references = models.TextField()
     create_at = models.DateTimeField(auto_now_add=True)
@@ -114,8 +122,8 @@ class IlanForm(ModelForm):
     class Meta:
         model = Ilan
         fields = ['sirketPoster', 'email', 'ilanBaslik', 'konum', 'isTuru', 'calismaZamani', 'isTanimi',
-                  'sirketIsmi', 'etiketAlani', 'sirketTanimi', 'sirketWebsite', 'sirketFacebook', 'sirketTwitter',
-                  'sirketLinkedin', 'sirketLogo']
+                  'sirketIsmi', 'etiketAlani', 'sirketWebsite', 'sirketFacebook', 'sirketTwitter',
+                  'sirketLinkedin', 'sirketLogo', 'sonBasvuru', 'personelSayisi', 'tecrube', 'genelNitelikler']
         widgets = {
             'sirketPoster': FileInput(attrs={'class': 'form-control', 'placeholder': 'Poster'}),
             'email':        TextInput(attrs={'class': 'form-control', 'id': 'email',
@@ -132,9 +140,12 @@ class IlanForm(ModelForm):
                                           'data-width': '100%', 'data-live-search': 'True',
                                           'placeholder': 'Çalışma Zamanı'}, choices=model.calismaZamaniSecenek),
             'isTanimi':     RichTextUploadingField(),
+            'genelNitelikler': RichTextUploadingField(),
+            'tecrube':      TextInput(attrs={'class': 'form-control', 'id': 'tecrube'}),
+            'personelSayisi': TextInput(attrs={'class': 'form-control', 'id': 'personelSayisi'}),
+            'sonBasvuru':   DateTimeInput(attrs={'class': 'form-control', 'id': 'sonBasvuru'}),
             'sirketIsmi':   TextInput(attrs={'class': 'form-control', 'id': 'company-name'}),
             'etiketAlani':  TextInput(attrs={'class': 'form-control', 'id': 'company-tagline'}),
-            'sirketTanimi': RichTextUploadingField(),
             'sirketWebsite':TextInput(attrs={'class': 'form-control', 'id': 'company-website',
                                               'placeholder': 'https://'}),
             'sirketFacebook':TextInput(attrs={'class': 'form-control', 'id': 'company-website-fb',
@@ -144,6 +155,7 @@ class IlanForm(ModelForm):
             'sirketLinkedin':TextInput(attrs={'class': 'form-control', 'id': 'company-website-tw',
                                               'placeholder': 'Şirket Linkedin Linki'}),
             'sirketLogo':   FileInput(attrs={'class': 'form-control', 'placeholder': 'Logo'})
+
         }
 
 

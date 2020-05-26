@@ -17,7 +17,7 @@
               {% for rs in ilanlar %}
 
                   <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                    <a href="job-single.html"></a>
+                    <a href="/job_detail/{{ rs.slug }}/{{ rs.id }}"></a>
                     <div class="job-listing-logo">
                         <img src="{{ rs.sirketLogo.url }}" alt="Image" class="img-fluid">
                     </div>

@@ -18,14 +18,14 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a data-fancybox data-ratio="2" href="https://www.youtube.com/watch?v=fyoFOzapgBA" class="block__96788">
+            <a data-fancybox data-ratio="2" href="{{ setting.aboutusLink }}" class="block__96788">
               <span class="play-icon"><span class="icon-play"></span></span>
-              <img src="{% static 'images/sq_img_6.jpg' %}" alt="Image" class="img-fluid img-shadow">
+              <img src="{{ setting.aboutusPicture.url }}" alt="Image" class="img-fluid img-shadow">
             </a>
           </div>
           <div class="col-lg-5 ml-auto">
-            <h2 class="section-title mb-3">1999’dan bu yana Türkiye’nin en büyük istihdam platformuyuz!</h2>
-            <p class="lead">İşBul.com’ un aday veri tabanında 25 milyonu aşkın özgeçmiş bulunuyor. İşBul.com üyesi 94 binin üzerinde şirket, ihtiyaç duyduğu iş gücünü Kariyer.net aracılığıyla arıyor. Kariyer.net, İstanbul Ümraniye ve Yeşilköy ofislerinin yanı sıra Adana, Ankara, Antalya, Bursa, Denizli, Elazığ, Eskişehir, Gaziantep, İzmir, Kayseri, Kocaeli, Konya, Mersin, Sakarya ve Samsun’da bulunan ofisleriyle müşteri ve adaylarına hizmet veriyor.</p>
+            <h2 class="section-title mb-3">{{ setting.aboutusTitle }}</h2>
+            <p class="lead">{{ setting.aboutus }}</p>
             <p></p>
           </div>
         </div>
@@ -36,15 +36,14 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0 order-md-2">
-            <a data-fancybox data-ratio="2" href="https://www.youtube.com/watch?v=agZWbLhVn-8" class="block__96788">
+            <a data-fancybox data-ratio="2" href="{{ setting.aboutusLink2 }}" class="block__96788">
               <span class="play-icon"><span class="icon-play"></span></span>
-              <img src="{% static 'images/sq_img_8.jpg' %}" alt="Image" class="img-fluid img-shadow">
+              <img src="{{ setting.aboutusPicture2.url }}" alt="Image" class="img-fluid img-shadow">
             </a>
           </div>
           <div class="col-lg-5 mr-auto order-md-1  mb-5 mb-lg-0">
-            <h2 class="section-title mb-3">Vizyonumuz;</h2>
-            <p class="lead">Dijital teknolojileri kullanarak daha fazla aday ve işvereni insan kaynakları ve kariyer süreçlerinde doğru iş ve yetenekle buluşturmak, Türkiye'nin istihdam piyasasına yön vermek.</p>
-            <p></p>
+            <h2 class="section-title mb-3">{{ setting.aboutus2Title }}</h2>
+            <p class="lead">{{ setting.aboutus2 }}</p>
           </div>
         </div>
       </div>

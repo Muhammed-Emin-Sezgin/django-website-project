@@ -4,6 +4,15 @@ from django.db import models
 # Create your models here.
 
 
+class Category(models.Model):
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
+    kategoriIsmi = models.CharField(max_length=50)
+    slug =models.SlugField(blank=True)
+
+    def __str__(self):
+        return self.kategoriIsmi
+
+
 class Ilan(models.Model):
 
     calismaZamaniSecenek = (
@@ -32,17 +41,22 @@ class Ilan(models.Model):
     email = models.CharField(max_length=50)
     ilanBaslik = models.CharField(max_length=50)
     konum = models.CharField(max_length=150, choices=konumSecenek)
-    isTuru = models.CharField(max_length=150, choices=isTuruSecenek, blank=True)
+    isTuru = models.ForeignKey(Category, on_delete=models.CASCADE)
     calismaZamani = models.CharField(max_length=150, choices=calismaZamaniSecenek, blank=True)
     isTanimi = RichTextUploadingField()
+    genelNitelikler = RichTextUploadingField(default="default")
     sirketIsmi = models.CharField(max_length=50)
+    tecrube = models.CharField(max_length=50, default="Tecrübesiz")
+    personelSayisi = models.CharField(max_length=16, default="Belirtilmemiştir")
     etiketAlani = models.CharField(blank=True, max_length=150)
-    sirketTanimi = RichTextUploadingField(blank=True)
     sirketWebsite = models.CharField(blank=True, max_length=50)
     sirketFacebook = models.CharField(blank=True, max_length=50)
     sirketTwitter = models.CharField(blank=True, max_length=50)
     sirketLinkedin = models.CharField(blank=True, max_length=50)
     sirketLogo = models.ImageField(blank=True, upload_to='images/')
+    slug = models.SlugField(blank=True)
+    sonBasvuru = models.DateField(default="2020-07-25")
+    yayinTarihi = models.DateField(auto_now=True)
 
     #basvuruBitimi = models.CharField(max_length=50)
     #sorumluluklar = models.CharField(max_length=50)
@@ -52,3 +66,4 @@ class Ilan(models.Model):
 
     def __str__(self):
         return self.sirketIsmi
+

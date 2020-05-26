@@ -28,9 +28,13 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_index = "nav-link active"
     sliderdata = Ilan.objects.all()[:5]
+    jobs = Ilan.objects.all()[:7]
+    sayi = Ilan.objects.count()
     context = {'setting': setting,
                'page': 'home',
-               'sliderdata': sliderdata}
+               'sliderdata': sliderdata,
+               'jobs': jobs,
+               'sayi': sayi}
     return render(request, 'index.html', context)
 
 
@@ -100,7 +104,12 @@ def job_listings(request):
 def job_single(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_jobSingle = "nav-link active"
-    context = {'setting': setting}
+    sliderdata = Ilan.objects.all()[:5]
+
+    context = {'setting': setting,
+               'page': 'home',
+               'sliderdata': sliderdata,
+               }
     return render(request, 'job-single.html', context)
 
 
@@ -129,6 +138,11 @@ def post_job(request):
         ilan = IlanForm(request.POST, request.FILES)
         if ilan.is_valid():
             data = Ilan()
+            data.genelNitelikler = ilan.cleaned_data['genelNitelikler']
+            data.tecrube = ilan.cleaned_data['tecrube']
+            data.personelSayisi = ilan.cleaned_data['personelSayisi']
+            data.genelNitelikler = ilan.cleaned_data['genelNitelikler']
+            data.sonBasvuru = ilan.cleaned_data['sonBasvuru']
             data.sirketPoster = ilan.cleaned_data['sirketPoster']
             data.email = ilan.cleaned_data['email']
             data.ilanBaslik = ilan.cleaned_data['ilanBaslik']
@@ -138,7 +152,6 @@ def post_job(request):
             data.isTanimi = ilan.cleaned_data['isTanimi']
             data.sirketIsmi = ilan.cleaned_data['sirketIsmi']
             data.etiketAlani = ilan.cleaned_data['etiketAlani']
-            data.sirketTanimi = ilan.cleaned_data['sirketTanimi']
             data.sirketWebsite = ilan.cleaned_data['sirketWebsite']
             data.sirketFacebook = ilan.cleaned_data['sirketFacebook']
             data.sirketTwitter = ilan.cleaned_data['sirketTwitter']
@@ -178,15 +191,17 @@ def testimonials(request):
 
 def ilan_search(request):
     setting = Setting.objects.get(pk=1)
-    setting.highlight_serviceSingle = "nav-link active"
     if request.method == 'POST':
         search = SearchForm(request.POST)
         if search.is_valid():
             query = search.cleaned_data['query']
+            konum = search.cleaned_data['sehir']
             calismaSekli = search.cleaned_data['calismaSekli']
-            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, calismaZamani__icontains=calismaSekli)
+            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, calismaZamani__icontains=calismaSekli,
+                                          konum__icontains=konum)
             if not ilanlar:
-                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, calismaZamani__icontains=calismaSekli)
+                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, calismaZamani__icontains=calismaSekli,
+                                              konum__icontains=konum)
             sayi = ilanlar.count()
             context = {
                 'setting': setting,
@@ -260,3 +275,11 @@ def signup_view(request):
     context = {'setting': setting,
                'signup': signup}
     return render(request, 'login.html', context)
+
+
+def job_detail(request, slug, id):
+    ilan = Ilan.objects.get(pk=id)
+    context = {'slug': slug,
+               'ilan': ilan}
+
+    return render(request, 'job-single.html', context)
