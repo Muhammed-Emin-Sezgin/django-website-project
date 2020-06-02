@@ -1,0 +1,55 @@
+<!-- HOME -->
+{% load static %}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Kayıtlı İlanlarım</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Ana Sayfa</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Kayıtlı İlanlarım</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="site-section">
+      <div class="container">
+
+        {% if not favorites %}
+            <div class="row mb-5 justify-content-center">
+              <div class="col-md-7 text-center">
+                <h2 class="section-title mb-10">Kayıtlı İlan Bulunamadı!</h2>
+              </div>
+            </div>
+        {% endif %}
+
+        <div class="row mb-5">
+            {% for job in favorites %}
+
+              <div class="col-md-6 col-lg-4 mb-5">
+                <a href="/job_detail/{{ job.job.slug }}/{{ job.job.id }}"><img src="{{ job.job.sirketPoster.url }}" alt="Image" class="img-fluid rounded mb-4"></a>
+                <h3><a href="/job_detail/{{ job.job.slug }}/{{ job.job.id }}" class="text-black">{{ job.job.ilanBaslik }}</a></h3>
+                <div>{{ job.job.sirketIsmi }}<span class="mx-2">|</span> <a href="/favorites/deletefromfavorites/{{ job.job.id }}" onclick="return confirm('Emin misiniz?')">Kaldır</a></div>
+              </div>
+
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+
+  </body>
+</html>

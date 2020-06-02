@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'mptt',
     'user.apps.UserConfig',
+    'favorites.apps.FavoritesConfig',
     'isIlan.apps.IsilanConfig',
     'product.apps.ProductConfig',
     'home.apps.HomeConfig',

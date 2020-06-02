@@ -5,6 +5,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+from favorites.models import Favorites
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm, FAQ
 
@@ -281,7 +282,16 @@ def signup_view(request):
 
 def job_detail(request, slug, id):
     ilan = Ilan.objects.get(pk=id)
+    sliderdata = Ilan.objects.all()[:5]
+
+    if Favorites.objects.filter(job_id=id):
+        isFavorite = True
+    else:
+        isFavorite = False
+
     context = {'slug': slug,
-               'ilan': ilan}
+               'ilan': ilan,
+               'isFavorite': isFavorite,
+               'sliderdata': sliderdata}
 
     return render(request, 'job-single.html', context)
