@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage, IlanForm
+from home.models import Setting, ContactForm, ContactFormMessage, IlanForm, FAQ
 
 # Create your views here.
 from isIlan.models import Ilan
@@ -84,7 +84,9 @@ def contact(request):
 def faq(request):
     setting = Setting.objects.get(pk=1)
     setting.highlight_faq = "nav-link active"
-    context = {'setting': setting}
+    sss = FAQ.objects.all().order_by('no')
+    context = {'setting': setting,
+               'sss': sss}
     return render(request, 'faq.html', context)
 
 

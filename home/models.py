@@ -196,7 +196,22 @@ class UserProfileForm(ModelForm):
         fields = ['phone', 'address', 'city', 'country', 'image']
 
 
+class FAQ(models.Model):
 
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+
+    no = models.IntegerField()
+    question = models.CharField(max_length=150)
+    answer = models.TextField(max_length=500)
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.question
 
 
 
