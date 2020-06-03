@@ -50,3 +50,4 @@ def applications(request):
     }
 
     return render(request, 'applications.html', context)
+

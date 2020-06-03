@@ -52,18 +52,17 @@
                             <span class="icon-room"></span> {{ job.job.konum }}
                         </div>
                         <div class="job-listing-meta">
-                            <span class="badge
+                            <span class="badge {% if job.status == "True"%}badge-success
+                                               {% elif job.status == "Pending"%}badge-info
+                                               {% else %}
+                                               badge-danger
+                                               {% endif %}">
                             {% if job.status == "True"%}
-                                badge-success
-                            {% endif %}
-                            {% if job.status == "False" %}
-                                badge-info
-                            {% endif %}
-                        ">{% if job.status == "True"%}
                                 Onaylandı
-                            {% endif %}
-                            {% if job.status == "False" %}
+                            {% elif job.status == "Pending"%}
                                 Onay Bekliyor
+                            {% else %}
+                                Reddedildi
                             {% endif %}</span>
                         </div>
                     </div>

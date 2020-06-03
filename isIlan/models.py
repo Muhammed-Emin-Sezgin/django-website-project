@@ -1,4 +1,5 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -14,6 +15,11 @@ class Category(models.Model):
 
 
 class Ilan(models.Model):
+
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
 
     calismaZamaniSecenek = (
         ('Yarı Zamanlı', 'Yarı Zamanlı'),
@@ -37,6 +43,8 @@ class Ilan(models.Model):
         ('Karabük', 'Karabük'),
     )
 
+    status = models.CharField(max_length=15, choices=STATUS, default=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     sirketPoster = models.ImageField(blank=True, upload_to='images/')
     email = models.CharField(max_length=50)
     ilanBaslik = models.CharField(max_length=50)

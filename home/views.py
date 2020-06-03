@@ -2,6 +2,8 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -302,3 +304,57 @@ def job_detail(request, slug, id):
                'sliderdata': sliderdata}
 
     return render(request, 'job-single.html', context)
+
+
+def myjobs(request):
+    current_user = request.user
+    myjobs = Ilan.objects.filter(user_id=current_user.id)
+    isMyjob = True
+    context = {
+        'myjobs': myjobs,
+        'isMyjob': isMyjob,
+    }
+
+    return render(request, 'myjobs.html', context)
+
+
+def applicants(request, id):
+    applicants = Applications.objects.filter(job_id=id).order_by("status")
+    isMyjob = False
+    context = {
+        'applicants': applicants,
+        'isMyjob': isMyjob,
+    }
+
+    return render(request, 'myjobs.html', context)
+
+
+def applicant_profile(request, id):
+    applicant = User.objects.get(pk=id)
+    context = {
+        'applicant': applicant
+    }
+
+    return render(request, 'applicant-profile.html', context)
+
+
+@login_required(login_url='/login')
+def applicant_profile_accept(request, id):
+    url = request.META.get('HTTP_REFERER')
+
+    application = Applications.objects.get(pk=id)
+    application.status = "True"
+    application.save()
+
+    return HttpResponseRedirect(url)
+
+
+@login_required(login_url='/login')
+def applicant_profile_decline(request, id):
+    url = request.META.get('HTTP_REFERER')
+
+    application = Applications.objects.get(pk=id)
+    application.status = "False"
+    application.save()
+
+    return HttpResponseRedirect(url)

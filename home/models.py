@@ -166,6 +166,7 @@ class UserProfile(models.Model):
     city = models.CharField(blank=True, max_length=20)
     country = models.CharField(blank=True, max_length=20)
     image = models.ImageField(blank=True, upload_to='images/users/', default='images/users/default.png')
+    cv = models.FileField(blank=True, upload_to='cv/', default='cv/default.pdf')
 
     def __str__(self):
         return self.user.username
@@ -193,7 +194,7 @@ class UserProfile(models.Model):
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['phone', 'address', 'city', 'country', 'image']
+        fields = ['phone', 'address', 'city', 'country', 'image', 'cv']
 
 
 class FAQ(models.Model):

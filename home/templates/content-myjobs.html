@@ -1,0 +1,163 @@
+    <!-- HOME -->
+    {% load static %}
+    {% if isMyjob %}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">İlanlarım</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Ana Sayfa</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>İlanlarım</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% else %}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">Başvurular</h1>
+            <div class="custom-breadcrumbs">
+              <a href="/">Ana Sayfa</a> <span class="mx-2 slash">/</span>
+              <a href="/myjobs">İlanlarım</a> <span class="mx-2 slash">/</span>
+              <span class="text-white"><strong>Başvurular</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="site-section" id="next">
+      <div class="container">
+
+        <div class="row justify-content-center mb-5" data-aos="fade-up">
+          <div id="filters" class="filters text-center button-group col-md-7">
+            <a class="btn btn-primary active" data-filter="*">{% if isMyjob %} İlanlarım {% endif %}{% if not isMyjob %} Başvurular {% endif %}</a>
+          </div>
+        </div>
+
+      {% if isMyjob %}
+
+          {% if not myjobs %}
+            <div class="row mb-5 justify-content-center">
+              <div class="col-md-7 text-center">
+                <h2 class="section-title mb-10">Başvurulan İlan Bulunamadı!</h2>
+              </div>
+            </div>
+        {% endif %}
+
+      {% else %}
+
+          {% if not applicants %}
+            <div class="row mb-5 justify-content-center">
+              <div class="col-md-7 text-center">
+                <h2 class="section-title mb-10">Başvuru Yok!</h2>
+              </div>
+            </div>
+        {% endif %}
+
+      {% endif %}
+
+        <ul class="job-listings mb-5">
+            {% if not isMyjob %}
+                {% for applicant in applicants %}
+                  <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                    <a href="/applicant_profile/{{ applicant.user.id }}"></a>
+                    <div class="job-listing-logo">
+                        <img src="{{ applicant.user.userprofile.image.url }}" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                            <h2>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</h2>
+                            <strong>{{ applicant.user.email }}</strong>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                            <span class="icon-phone"></span> {{ applicant.user.userprofile.phone }}
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                            <span class="icon-room"></span> {{ applicant.user.userprofile.city }}, {{ applicant.user.userprofile.country }}
+                        </div>
+                        <div class="job-listing-meta">
+                            <span class="badge {% if applicant.status == "True"%}badge-success
+                                               {% elif applicant.status == "Pending"%}badge-info
+                                               {% else %}
+                                               badge-danger
+                                               {% endif %}">
+                            {% if applicant.status == "True"%}
+                                Onaylandı
+                            {% elif applicant.status == "Pending"%}
+                                Onay Bekliyor
+                            {% else %}
+                                Reddedildi
+                            {% endif %}</span>
+                        </div>
+
+                    </div>
+
+                  </li>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-4 text-center">
+                        <a href="accept/{{ applicant.id }}" class="btn btn-sm btn-success border-width-2 d-block">ONAYLA</a>
+                      </div>
+                      <div class="col-md-4 text-center">
+                        <a href="decline/{{ applicant.id }}" class="btn btn-sm btn-danger border-width-2 d-block">REDDET</a>
+                      </div>
+                    </div>
+                  </div>
+
+              {% endfor %}
+
+            {% else %}
+
+                {% for job in myjobs %}
+
+                  <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                    <a href="/applicants/{{ job.id }}"></a>
+                    <div class="job-listing-logo">
+                        <img src="{{ job.sirketLogo.url }}" alt="Image" class="img-fluid">
+                    </div>
+
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                            <h2>{{ job.ilanBaslik }}</h2>
+                            <strong>{{ job.sirketIsmi }}</strong>
+                        </div>
+                        <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                            <span class="icon-room"></span> {{ job.konum }}
+                        </div>
+                        <div class="job-listing-meta">
+                            <span class="badge {% if job.status == "True"%}badge-success{% else %}badge-info{% endif %}">
+                            {% if job.status == "True"%}
+                                Onaylandı
+                            {% else %}
+                                Onay Bekliyor
+                            {% endif %}</span>
+                        </div>
+                    </div>
+
+                  </li>
+
+              {% endfor %}
+
+            {% endif %}
+
+
+        </ul>
+      </div>
+    </section>
+
+  </body>
+</html>

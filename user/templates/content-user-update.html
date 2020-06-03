@@ -38,6 +38,12 @@
         <form action="" method="post" enctype="multipart/form-data" class="">
             <div class="row mb-4">
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
+                <strong class="d-block text-black">Profil Resmi</strong>
+                <label class="btn btn-primary btn-md btn-file btn-block">
+                {{ profile_form.image }}Gözat<input type="file" hidden>
+                </label>
+              </div>
+              <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 <strong class="d-block text-black">İsim</strong>
                 {{ user_form.first_name }}
               </div>
@@ -70,15 +76,15 @@
                 {{ profile_form.country }}
               </div>
               <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
-                <strong class="d-block text-black">Profil Resmi</strong>
-                <label class="btn btn-primary btn-md btn-file">
-                {{ profile_form.image }}Gözat<input type="file" hidden>
+                <strong class="d-block text-black">CV</strong>
+                <label class="btn btn-primary btn-md btn-file btn-block">
+                {{ profile_form.cv }}CV Yükle<input type="file" class="btn btb-md btn-primary border-width-2 btn-block" hidden>
                 </label>
               </div>
             </div>
             <div class="col-sm-12 col-md-12 mb-4 col-lg-12">
                 {% csrf_token %}
-                <input type="submit" value="Güncelle" class="btn btn-primary btn-md text-white">
+                <input type="submit" value="Güncelle" class="btn btn-md text-white btn-block btn-info">
             </div>
         </form>
           </div>

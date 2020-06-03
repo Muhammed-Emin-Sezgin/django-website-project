@@ -23,22 +23,23 @@ class UserUpdateForm(UserChangeForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
         widgets = {
-            'username'  : TextInput(attrs={'class': 'form-control', 'placeholder': 'Kullanıcı Adı'}),
-            'email'     : EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'username': TextInput(attrs={'class': 'form-control', 'placeholder': 'Kullanıcı Adı'}),
+            'email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
             'first_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'İsim'}),
-            'last_name'  : TextInput(attrs={'class': 'form-control', 'placeholder': 'Soyisim'})
+            'last_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Soyisim'})
         }
 
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('phone', 'address', 'city', 'country', 'image')
+        fields = ('phone', 'address', 'city', 'country', 'image', 'cv')
         widgets = {
-            'phone'     : TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefon Numarası'}),
-            'address'   : TextInput(attrs={'class': 'form-control', 'placeholder': 'Adres'}),
-            'city'      : Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-white btn-lg', 'data-width': '100%',
+            'phone': TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefon Numarası'}),
+            'address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Adres'}),
+            'city': Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-white btn-lg', 'data-width': '100%',
                                         'data-live-search': 'True', 'placeholder': 'Şehir'}, choices=Ilan.konumSecenek),
-            'country'   : TextInput(attrs={'class': 'form-control', 'placeholder': 'Ülke'}),
-            'image'     : FileInput(attrs={'class': 'form-control', 'placeholder': 'Profil Resmi'})
+            'country': TextInput(attrs={'class': 'form-control', 'placeholder': 'Ülke'}),
+            'image': FileInput(attrs={'class': 'form-control', 'placeholder': 'Profil Resmi'}),
+            'cv': FileInput(attrs={'class': 'form-control btn btb-md btn-primary border-width-2 btn-block', 'placeholder': 'Cv'})
         }
