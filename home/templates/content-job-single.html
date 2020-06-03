@@ -57,7 +57,11 @@
                 {% endif %}
               </div>
               <div class="col-6">
-                <a href="#" class="btn btn-block btn-primary btn-md">Başvur</a>
+                {% if isAppeal %}
+                    <a href="/applications/addtoapplications/{{ ilan.id }}" class="btn btn-block btn-primary btn-md btn-dark">Başvur</a>
+                {% else %}
+                    <a href="/applications/addtoapplications/{{ ilan.id }}" class="btn btn-block btn-primary btn-md">Başvur</a>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -85,7 +89,11 @@
                 {% endif %}
               </div>
               <div class="col-6">
-                <a href="#" class="btn btn-block btn-primary btn-md">Başvur</a>
+                {% if isAppeal %}
+                    <a href="/applications/addtoapplications/{{ ilan.id }}" class="btn btn-block btn-primary btn-md btn-dark">Başvur</a>
+                {% else %}
+                    <a href="/applications/addtoapplications/{{ ilan.id }}" class="btn btn-block btn-primary btn-md">Başvur</a>
+                {% endif %}
               </div>
             </div>
 

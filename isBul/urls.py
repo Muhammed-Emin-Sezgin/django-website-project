@@ -29,6 +29,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('user/', include('user.urls')),
     path('favorites/', include('favorites.urls')),
+    path('applications/', include('applications.urls')),
     path('', include('home.urls')),
     path(r'ckeditor/', include('ckeditor_uploader.urls')),
     path('search/', views.ilan_search, name='ilan_search'),

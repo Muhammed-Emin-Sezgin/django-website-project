@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'mptt',
     'user.apps.UserConfig',
     'favorites.apps.FavoritesConfig',
+    'applications.apps.ApplicationsConfig',
     'isIlan.apps.IsilanConfig',
     'product.apps.ProductConfig',
     'home.apps.HomeConfig',

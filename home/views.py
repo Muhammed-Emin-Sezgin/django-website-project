@@ -5,6 +5,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+from applications.models import Applications
 from favorites.models import Favorites
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm, FAQ
@@ -289,9 +290,15 @@ def job_detail(request, slug, id):
     else:
         isFavorite = False
 
+    if Applications.objects.filter(job_id=id):
+        isAppeal = True
+    else:
+        isAppeal = False
+
     context = {'slug': slug,
                'ilan': ilan,
                'isFavorite': isFavorite,
+               'isAppeal'  : isAppeal,
                'sliderdata': sliderdata}
 
     return render(request, 'job-single.html', context)

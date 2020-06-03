@@ -4,47 +4,49 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from favorites.models import Favorites
+from applications.models import Applications
 
 
 def index(request):
-    return HttpResponseRedirect('/favorites.html')
+    return HttpResponseRedirect('/applications.html')
 
 
 @login_required(login_url='/login')
-def addtofavorites(request, id):
+def addtoapplications(request, id):
     url = request.META.get('HTTP_REFERER')
-    checkjob = Favorites.objects.filter(job_id=id)
+    checkjob = Applications.objects.filter(job_id=id)
     if checkjob:
-        return HttpResponseRedirect('/favorites/deletefromfavorites/' + str(id))
+        messages.info(request, "İlan'a zaten başvurulmuş!")
+        return HttpResponseRedirect(url)
 
     if id:
         current_user = request.user
-        data = Favorites()
+        data = Applications()
         data.user_id = current_user.id
         data.job_id = id
         data.save()
 
-        messages.success(request, "İlan başarı ile kaydedilmiştir.")
+        messages.success(request, "İlan'a başarı ile başvurulmuştur.")
         return HttpResponseRedirect(url)
 
-    messages.warning(request, "İlan kaydedilirken hata oluştu!!!")
+    messages.warning(request, "İlan'a başvurulurken hata oluştu!!!")
     return HttpResponseRedirect(url)
 
 
 @login_required(login_url='/login')
-def deletefromfavorites(request, id):
+def deletefromapplications(request, id):
     url = request.META.get('HTTP_REFERER')
-    Favorites.objects.filter(job_id=id).delete()
+    Applications.objects.filter(job_id=id).delete()
     messages.success(request, "İlan listeden silinmiştir.")
     return HttpResponseRedirect(url)
 
 
 @login_required(login_url='/login')
-def favorites(request):
+def applications(request):
     current_user = request.user
-    favorites = Favorites.objects.filter(user_id=current_user.id)
+    applications = Applications.objects.filter(user_id=current_user.id)
     context = {
-        'favorites': favorites
+        'applications': applications
     }
-    return render(request, 'favorites.html', context)
+
+    return render(request, 'applications.html', context)
