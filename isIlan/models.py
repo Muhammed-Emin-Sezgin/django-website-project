@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.forms import ModelForm
 from django.urls import reverse
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
@@ -80,5 +81,32 @@ class Ilan(models.Model):
 
     def get_absolute_url(self):
         return reverse('ilan_detail', kwargs={'slug': self.slug})
+
+
+class Comment(models.Model):
+    STATUS = (
+        ('New', 'New'),
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+
+    ilan = models.ForeignKey(Ilan, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField(blank=True, max_length=50)
+    comment = models.CharField(blank=True, max_length=250)
+    status = models.CharField(max_length=15, choices=STATUS, default='new')
+    ip = models.CharField(blank=True, max_length=20)
+
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['subject', 'comment']
 
 

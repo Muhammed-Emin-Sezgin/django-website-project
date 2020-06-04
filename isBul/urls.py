@@ -41,6 +41,7 @@ urlpatterns = [
     path('applicant_profile/<int:id>', views.applicant_profile, name='applicant_profile'),
     path('applicants/accept/<int:id>', views.applicant_profile_accept, name='applicant_profile_accept'),
     path('applicants/decline/<int:id>', views.applicant_profile_decline, name='applicant_profile_decline'),
+    path('addcomment/<int:id>', views.addcomment, name='addcomment'),
 ]
 
 if settings.DEBUG:

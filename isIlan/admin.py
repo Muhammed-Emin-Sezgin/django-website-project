@@ -2,7 +2,7 @@
 from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
 
-from isIlan.models import Category, Ilan
+from isIlan.models import Category, Ilan, Comment
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -50,5 +50,11 @@ class IlanAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('ilanBaslik',)}
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'ilan', 'user', 'status']
+    list_filter = ['status']
+
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Ilan, IlanAdmin)
+admin.site.register(Comment, CommentAdmin)

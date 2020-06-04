@@ -13,7 +13,7 @@ from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm, FAQ
 
 # Create your views here.
-from isIlan.models import Ilan, Category
+from isIlan.models import Ilan, Category, Comment, CommentForm
 
 
 def homebase(request):
@@ -299,6 +299,8 @@ def signup_view(request):
 def job_detail(request, slug, id):
     ilan = Ilan.objects.get(pk=id)
     sliderdata = Ilan.objects.all()[:5]
+    comments = Comment.objects.filter(ilan_id=id, status='True')
+    form = CommentForm()
 
     if Favorites.objects.filter(job_id=id):
         isFavorite = True
@@ -313,8 +315,10 @@ def job_detail(request, slug, id):
     context = {'slug': slug,
                'ilan': ilan,
                'isFavorite': isFavorite,
-               'isAppeal'  : isAppeal,
-               'sliderdata': sliderdata}
+               'isAppeal': isAppeal,
+               'sliderdata': sliderdata,
+               'comments': comments,
+               'form': form}
 
     return render(request, 'job-single.html', context)
 
@@ -370,4 +374,26 @@ def applicant_profile_decline(request, id):
     application.status = "False"
     application.save()
 
+    return HttpResponseRedirect(url)
+
+
+@login_required(login_url='/login')
+def addcomment(request, id):
+    url = request.META.get('HTTP_REFERER')
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            current_user = request.user
+
+            data = Comment()
+            data.user_id = current_user.id
+            data.ilan_id = id
+            data.subject = form.cleaned_data['subject']
+            data.comment = form.cleaned_data['comment']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+            messages.success(request, "Yorumunuz başarı ile gönderilmiştir. Teşekkür Ederiz")
+            return HttpResponseRedirect(url)
+    messages.error(request, "Yorumunuz gönderilirken hatayla karşılaşıldı!!!")
     return HttpResponseRedirect(url)
