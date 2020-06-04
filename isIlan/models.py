@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
@@ -10,7 +11,7 @@ from mptt.models import MPTTModel
 class Category(MPTTModel):
     parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     kategoriIsmi = models.CharField(max_length=50)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, unique=True)
 
     class MPTTMeta:
         level_attr = 'mptt_level'
@@ -23,6 +24,9 @@ class Category(MPTTModel):
             full_path.append(k.kategoriIsmi)
             k = k.parent
         return ' / '.join(full_path[::-1])
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
 
 
 class Ilan(models.Model):
@@ -64,7 +68,7 @@ class Ilan(models.Model):
     sirketTwitter = models.CharField(blank=True, max_length=50)
     sirketLinkedin = models.CharField(blank=True, max_length=50)
     sirketLogo = models.ImageField(blank=True, upload_to='images/')
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, unique=True)
     sonBasvuru = models.DateField(default="2020-07-25")
     yayinTarihi = models.DateField(auto_now=True)
 
@@ -73,5 +77,8 @@ class Ilan(models.Model):
 
     def __str__(self):
         return self.sirketIsmi
+
+    def get_absolute_url(self):
+        return reverse('ilan_detail', kwargs={'slug': self.slug})
 
 
