@@ -94,7 +94,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(blank=True, max_length=50)
     comment = models.CharField(blank=True, max_length=250)
-    status = models.CharField(max_length=15, choices=STATUS, default='new')
+    status = models.CharField(max_length=15, choices=STATUS, default='New')
     ip = models.CharField(blank=True, max_length=20)
 
     create_at = models.DateTimeField(auto_now_add=True)
