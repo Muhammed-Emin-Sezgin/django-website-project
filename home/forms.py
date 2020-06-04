@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class SearchForm(forms.Form):
     query = forms.CharField(label='search', max_length=100, required=False)
-    calismaSekli = forms.CharField(label='calismaSekli', max_length=20, required=False)
+    category = forms.CharField(label='category', max_length=20, required=False)
     sehir = forms.CharField(label='sehir', max_length=20, required=False)
 
 

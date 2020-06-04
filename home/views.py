@@ -13,7 +13,7 @@ from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage, IlanForm, FAQ
 
 # Create your views here.
-from isIlan.models import Ilan
+from isIlan.models import Ilan, Category
 
 
 def homebase(request):
@@ -34,8 +34,10 @@ def index(request):
     sliderdata = Ilan.objects.all()[:5]
     jobs = Ilan.objects.all()[:7]
     sayi = Ilan.objects.count()
+    category = Category.objects.all()
     context = {'setting': setting,
                'page': 'home',
+               'category': category,
                'sliderdata': sliderdata,
                'jobs': jobs,
                'sayi': sayi}
@@ -140,10 +142,12 @@ def portfolio_single(request):
 
 
 def post_job(request):
+    current_user = request.user
     if request.method == 'POST':
         ilan = IlanForm(request.POST, request.FILES)
         if ilan.is_valid():
             data = Ilan()
+            data.user = current_user
             data.genelNitelikler = ilan.cleaned_data['genelNitelikler']
             data.tecrube = ilan.cleaned_data['tecrube']
             data.personelSayisi = ilan.cleaned_data['personelSayisi']
@@ -202,14 +206,23 @@ def ilan_search(request):
         if search.is_valid():
             query = search.cleaned_data['query']
             konum = search.cleaned_data['sehir']
-            calismaSekli = search.cleaned_data['calismaSekli']
-            ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, calismaZamani__icontains=calismaSekli,
-                                          konum__icontains=konum)
-            if not ilanlar:
-                ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, calismaZamani__icontains=calismaSekli,
+            category = search.cleaned_data['category']
+
+            if not category:
+                ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, konum__icontains=konum)
+                if not ilanlar:
+                    ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, konum__icontains=konum)
+            else:
+                ilanlar = Ilan.objects.filter(sirketIsmi__icontains=query, isTuru__exact=category,
                                               konum__icontains=konum)
+                if not ilanlar:
+                    ilanlar = Ilan.objects.filter(ilanBaslik__icontains=query, isTuru__exact=category,
+                                                  konum__icontains=konum)
+
             sayi = ilanlar.count()
+            categoryall = Category.objects.all()
             context = {
+                'category': categoryall,
                 'setting': setting,
                 'ilanlar': ilanlar,
                 'sayi': sayi,

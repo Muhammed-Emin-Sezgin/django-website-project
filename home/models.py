@@ -7,7 +7,7 @@ from django.forms import ModelForm, TextInput, Textarea, ImageField, MultipleCho
 # Create your models here.
 from django.utils.safestring import mark_safe
 
-from isIlan.models import Ilan
+from isIlan.models import Ilan, Category
 
 
 class Setting(models.Model):
@@ -135,7 +135,7 @@ class IlanForm(ModelForm):
                                           'placeholder': 'Çalışma Zamanı'}, choices=model.konumSecenek),
             'isTuru':       Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-black',
                                           'data-width': '100%', 'data-live-search': 'True', 'placeholder': 'İş Türü'},
-                                   choices=model.isTuruSecenek),
+                                   choices=Category.objects.all()),
             'calismaZamani':Select(attrs={'class': 'selectpicker border rounded', 'data-style': 'btn-black',
                                           'data-width': '100%', 'data-live-search': 'True',
                                           'placeholder': 'Çalışma Zamanı'}, choices=model.calismaZamaniSecenek),

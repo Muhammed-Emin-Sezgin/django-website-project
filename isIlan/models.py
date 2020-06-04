@@ -3,15 +3,26 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 
 
-class Category(models.Model):
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
+class Category(MPTTModel):
+    parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     kategoriIsmi = models.CharField(max_length=50)
-    slug =models.SlugField(blank=True)
+    slug = models.SlugField(blank=True)
+
+    class MPTTMeta:
+        level_attr = 'mptt_level'
+        order_insertion_by = ['kategoriIsmi']
 
     def __str__(self):
-        return self.kategoriIsmi
+        full_path = [self.kategoriIsmi]
+        k = self.parent
+        while k is not None:
+            full_path.append(k.kategoriIsmi)
+            k = k.parent
+        return ' / '.join(full_path[::-1])
 
 
 class Ilan(models.Model):
@@ -24,15 +35,6 @@ class Ilan(models.Model):
     calismaZamaniSecenek = (
         ('Yarı Zamanlı', 'Yarı Zamanlı'),
         ('Tam Zamanlı', 'Tam Zamanlı'),
-    )
-
-    isTuruSecenek = (
-        ('Muhasebe/Finans', 'Muhasebe/Finans'),
-        ('Yapı/Mimar/İnşaat', 'Yapı/Mimar/İnşaat'),
-        ('Üretim/Endüstriyel Ürünler/Otomotiv', 'Üretim/Endüstriyel Ürünler/Otomotiv'),
-        ('Bilişim/Telekom', 'Bilişim/Telekom'),
-        ('Turizm/Gıda/Hizmet', 'Turizm/Gıda/Hizmet'),
-        ('Staj/Yeni Mezun/Part-Time', 'Staj/Yeni Mezun/Part-Time'),
     )
 
     konumSecenek = (
@@ -66,12 +68,10 @@ class Ilan(models.Model):
     sonBasvuru = models.DateField(default="2020-07-25")
     yayinTarihi = models.DateField(auto_now=True)
 
-    #basvuruBitimi = models.CharField(max_length=50)
-    #sorumluluklar = models.CharField(max_length=50)
-
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.sirketIsmi
+
 
